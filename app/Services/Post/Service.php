@@ -19,6 +19,16 @@ class Service
   }
   public function checkImage(Request $request)
   {
-    return $request->file('photo') ? $request->file('photo')->store('images') : null;
+    if (!$request->file('photo')) return null;
+
+    $file = $request->file('photo');
+
+    $mimeTypeOfFile = $request->file('photo')->getMimeType();
+
+    $mimes = ['image/jpeg', 'image/png', 'image/gif'];
+
+    if (!in_array($mimeTypeOfFile, $mimes)) return null;
+
+    return $file->store('images');
   }
 }

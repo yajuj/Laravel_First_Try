@@ -20,7 +20,8 @@
     </div>
     <div class="mb-3">
       <label for="formFile" class="form-label">Pick you'r image</label>
-      <input class="form-control" value="{{$post->image??''}}" name="photo" type="file">
+      <input class="form-control" value="{{$post->image??''}}" name="photo" accept="image/jpeg,image/png,image/gif"
+        type="file">
     </div>
     <div class="mb-3 text-end">
       <button class="btn btn-primary" type="submit">Update</button>
