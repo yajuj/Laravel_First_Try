@@ -16,9 +16,13 @@
     </div>
     <div class="card-body d-flex justify-content-end align-items-center">
       @can('view', $post)
-      <div>
-        <a href="#" class="btn btn-danger">Remove</a>
-        <a href="{{route('posts.edit',$post)}}" class="btn btn-primary">Update</a>
+      <div class="d-flex gap-1">
+        <a href="{{route('posts.edit', $post)}}" class="btn btn-primary">Update</a>
+        <form action="{{route('posts.destroy',$post)}}" method="POST">
+          @csrf
+          @method('delete')
+          <button class="btn btn-danger">Remove</button>
+        </form>
       </div>
       @endcan
     </div>
