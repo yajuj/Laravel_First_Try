@@ -1,2 +1,2 @@
--- Простой блог на Laravel
--- Можно запустить командой php artisan serve
+--Простой блог на Laravel
+--Можно запустить командой php artisan serve
