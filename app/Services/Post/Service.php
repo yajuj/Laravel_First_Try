@@ -3,6 +3,7 @@
 namespace App\Services\Post;
 
 use App\Http\Requests\Post\StoreRequest;
+use \Illuminate\Http\UploadedFile;
 use App\Models\Post;
 use Illuminate\Http\Request;
 
@@ -29,6 +30,11 @@ class Service
 
     if (!in_array($mimeTypeOfFile, $mimes)) return null;
 
+    return $this->storeImage($file);
+  }
+
+  public function storeImage(UploadedFile $file)
+  {
     return $file->store('images');
   }
 }
