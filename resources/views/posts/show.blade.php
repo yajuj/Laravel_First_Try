@@ -15,12 +15,12 @@
       </p>
     </div>
     <div class="card-body d-flex justify-content-end align-items-center">
-      @if (auth()->check()&&auth()->user()->name === $post->author)
+      @can('view', $post)
       <div>
         <a href="#" class="btn btn-danger">Remove</a>
         <a href="{{route('posts.edit',$post)}}" class="btn btn-primary">Update</a>
       </div>
-      @endif
+      @endcan
     </div>
   </div>
 </div>

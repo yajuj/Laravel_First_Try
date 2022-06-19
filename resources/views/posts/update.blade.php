@@ -11,7 +11,7 @@
     </div>
     <div class="mb-3">
       <label for="exampleFormControlInput1" class="form-label">Description</label>
-      <input type="text" class="form-control" value="{{$post->description}}a" name="description"
+      <input type="text" class="form-control" value="{{$post->description}}" name="description"
         placeholder="Введите краткое описание поста...">
     </div>
     <div class="mb-3">
