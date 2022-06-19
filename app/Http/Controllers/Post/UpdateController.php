@@ -25,6 +25,10 @@ class UpdateController extends BaseController
    */
   public function __invoke(UpdateRequest $request, Post $post)
   {
+    if ($request->user()->cannot('update', $post)) {
+      abort(403);
+    }
+
     $data = $request->validated();
     $imageFromRequest = $this->service->checkImage($request);
     $data['image'] =  $imageFromRequest ? $imageFromRequest : $post->image;
