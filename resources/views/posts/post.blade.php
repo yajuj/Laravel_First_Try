@@ -8,7 +8,7 @@
   <div class="card-body">
     <h5 class="card-title">{{$post->title}}</h5>
     <div class="d-flex justify-content-between">
-      <p>Author: {{$post->author}}</p>
+      <p>Author: {{$post->user->name}}</p>
       <p>Date: {{$post->created_at}}</p>
     </div>
     <p class="card-text">Description: {{mb_strimwidth($post->description,0,50)}}...

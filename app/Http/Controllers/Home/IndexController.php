@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Home;
 
 use App\Models\Post;
+use App\Models\User;
 use App\Http\Requests\Post\FilterRequest;
 use App\Http\Filters\PostFilter;
 

@@ -2,7 +2,6 @@
 
 namespace App\Services\Post;
 
-use App\Http\Requests\Post\StoreRequest;
 use \Illuminate\Http\UploadedFile;
 use App\Models\Post;
 use Illuminate\Http\Request;
@@ -11,7 +10,7 @@ class Service
 {
   public function store(array $data)
   {
-    $data['author'] = auth()->user()->name;
+    $data['user_id'] = auth()->user()->id;
     Post::create($data);
   }
   public function update(array $data, Post $post)

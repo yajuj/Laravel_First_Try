@@ -17,7 +17,7 @@ class IndexController extends Controller
   public function __invoke(FilterRequest $request)
   {
     $data = $request->validated();
-    $data['author'] = auth()->user()->name;
+    $data['author'] = auth()->user()->id;
 
     $filter = app()->make(PostFilter::class, ['queryParams' => $data]);
 
