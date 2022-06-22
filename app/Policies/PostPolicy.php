@@ -31,8 +31,7 @@ class PostPolicy
    */
   public function view(User $user, Post $post)
   {
-    return $user->id === $post->user_id ? Response::allow()
-      : Response::deny('You do not own this post.');
+    return $user->id === $post->user_id;
   }
 
   /**
