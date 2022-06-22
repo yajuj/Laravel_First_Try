@@ -13,6 +13,7 @@
       {{$comment->content}}
     </p>
 
+    @can('view', $comment)
     <div class="small d-flex justify-content-start gap-3">
       <a href="{{route('comments.edit',$comment->id)}}">
         Update
@@ -24,5 +25,6 @@
           value="Delete" />
       </form>
     </div>
+    @endcan
   </div>
 </div>

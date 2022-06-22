@@ -5,7 +5,6 @@ namespace App\Http\Filters;
 
 
 use Illuminate\Database\Eloquent\Builder;
-use App\Models\User;
 
 class PostFilter extends AbstractFilter
 {
@@ -41,7 +40,6 @@ class PostFilter extends AbstractFilter
   }
   public function author(Builder $builder, $value)
   {
-    $id = User::where('name', 'like', "{$value}%")->get()->first()->id ?? null;
-    $builder->where('user_id', '=', $id);
+    $builder->where('user_id', '=', $value);
   }
 }
