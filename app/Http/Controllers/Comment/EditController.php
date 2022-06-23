@@ -16,6 +16,9 @@ class EditController extends Controller
    */
   public function __invoke(Request $request, Comment $comment)
   {
-    // 
+    if ($request->user()->cannot('update', $comment)) {
+      abort(403);
+    }
+    return view('comments.update', compact('comment'));
   }
 }

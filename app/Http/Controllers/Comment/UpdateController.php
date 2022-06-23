@@ -24,13 +24,13 @@ class UpdateController extends BaseController
    */
   public function __invoke(UpdateRequest $request, Comment $comment)
   {
-    // if ($request->user()->cannot('update', $comment)) {
-    //   abort(403);
-    // }
+    if ($request->user()->cannot('update', $comment)) {
+      abort(403);
+    }
 
     $data = $request->validated();
     $this->service->update($data, $comment);
 
-    return redirect()->route('Comments.index');
+    return redirect()->route('posts.show', $comment->post);
   }
 }

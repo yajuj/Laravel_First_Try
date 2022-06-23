@@ -13,7 +13,7 @@ class IndexController
   {
     $data = $request->validated();
     if (isset($data['author'])) {
-      $id = User::where('name', 'like', "{$data['author']}%")->get()->first()->id ?? null;
+      $id = User::where('name', 'like', "%{$data['author']}%")->get()->first()->id ?? null;
       $data['author'] = $id;
     }
     $filter = app()->make(PostFilter::class, ['queryParams' => $data]);
