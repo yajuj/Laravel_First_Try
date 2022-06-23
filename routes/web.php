@@ -31,15 +31,15 @@ Route::prefix('posts')->middleware('auth')->group(
       Route::patch('/{post}', UpdateController::class)->name('posts.update');
       Route::delete('/{post}', DestroyController::class)->name('posts.destroy');
     });
-
-    Route::namespace('Comment')->prefix('comments')->group(function () {
-      // Контроллеры в пространстве имён "App\Http\Controllers\Comment"
-      Route::post('/{post}', StoreController::class)->name('comments.store');
-      Route::patch('/{comment}', UpdateController::class)->name('comments.update');
-      Route::get('/{comment}/edit', EditController::class)->name('comments.edit');
-      Route::delete('/{comment}', DestroyController::class)->name('comments.destroy');
-    });
   }
 );
+
+Route::namespace('Comment')->prefix('comments')->middleware('auth')->group(function () {
+  // Контроллеры в пространстве имён "App\Http\Controllers\Comment"
+  Route::post('/{post}', StoreController::class)->name('comments.store');
+  Route::patch('/{comment}', UpdateController::class)->name('comments.update');
+  Route::get('/{comment}/edit', EditController::class)->name('comments.edit');
+  Route::delete('/{comment}', DestroyController::class)->name('comments.destroy');
+});
 
 Auth::routes();
