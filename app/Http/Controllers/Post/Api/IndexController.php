@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\Post;
+namespace App\Http\Controllers\Post\Api;
 
 use App\Models\Post;
 use App\Http\Controllers\Controller;
 use App\Http\Filters\PostFilter;
 use App\Http\Requests\Post\FilterRequest;
+use App\Http\Resources\Post\PostCollection;
 
 class IndexController extends Controller
 {
@@ -17,11 +18,10 @@ class IndexController extends Controller
   public function __invoke(FilterRequest $request)
   {
     $data = $request->validated();
-    $data['author'] = auth()->user()->id;
 
     $filter = app()->make(PostFilter::class, ['queryParams' => $data]);
 
     $posts = Post::filter($filter)->orderBy('created_at', 'desc')->paginate(5);
-    return view('posts.index', compact('posts'));
+    return new PostCollection($posts);
   }
 }

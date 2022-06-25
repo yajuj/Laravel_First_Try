@@ -1,9 +1,10 @@
 <?php
 
-namespace App\Http\Controllers\Post;
+namespace App\Http\Controllers\Post\Api;
 
 use App\Models\Post;
 use App\Http\Controllers\Controller;
+use App\Http\Resources\Post\PostResource;
 use Illuminate\Http\Request;
 
 class DestroyController extends Controller
@@ -22,6 +23,6 @@ class DestroyController extends Controller
 
     if ($post->image) unlink($post->image);
     $post->destroy($post->id);
-    return redirect()->route('posts.index');
+    return ['succes' => true];
   }
 }

@@ -1,8 +1,8 @@
 <?php
 
-use App\Http\Controllers\PostController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,6 +15,19 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Auth::routes();
+
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
   return 'fdsa';
 });
+
+Route::namespace('Post\Api')->prefix('posts')->middleware('auth:sanctum')->group(
+  function () {
+    // Контроллеры в пространстве имён "App\Http\Controllers\Post"
+    Route::get('/', IndexController::class)->withoutMiddleware('auth:sanctum');
+    Route::post('/', StoreController::class);
+    Route::get('/{post}', ShowController::class)->withoutMiddleware('auth:sanctum');
+    Route::patch('/{post}', UpdateController::class);
+    Route::delete('/{post}', DestroyController::class);
+  }
+);

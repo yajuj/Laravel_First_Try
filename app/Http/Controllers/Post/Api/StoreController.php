@@ -1,8 +1,9 @@
 <?php
 
-namespace App\Http\Controllers\Post;
+namespace App\Http\Controllers\Post\Api;
 
 use App\Http\Requests\Post\StoreRequest;
+use App\Http\Resources\Post\PostResource;
 
 class StoreController extends BaseController
 {
@@ -17,6 +18,6 @@ class StoreController extends BaseController
     $data = $request->validated();
     $data['image'] = $this->service->checkImage($request);
     $this->service->store($data);
-    return redirect()->route('posts.index');
+    return new PostResource($data);
   }
 }

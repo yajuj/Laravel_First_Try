@@ -19,18 +19,16 @@ use Illuminate\Support\Facades\Auth;
 Route::get('/', Home\IndexController::class)->name('main.index');
 Route::view('/about', 'about')->name('main.about');
 
-Route::prefix('posts')->middleware('auth')->group(
+Route::namespace('Post\Web')->prefix('posts')->middleware('auth')->group(
   function () {
-    Route::namespace('Post')->group(function () {
-      // Контроллеры в пространстве имён "App\Http\Controllers\Post"
-      Route::get('/', IndexController::class)->name('posts.index');
-      Route::get('/create', CreateController::class)->name('posts.create');
-      Route::post('/', StoreController::class)->name('posts.store');
-      Route::get('/{post}', ShowController::class)->name('posts.show')->withoutMiddleware('auth');
-      Route::get('/{post}/edit', EditController::class)->name('posts.edit');
-      Route::patch('/{post}', UpdateController::class)->name('posts.update');
-      Route::delete('/{post}', DestroyController::class)->name('posts.destroy');
-    });
+    // Контроллеры в пространстве имён "App\Http\Controllers\Post"
+    Route::get('/', IndexController::class)->name('posts.index');
+    Route::get('/create', CreateController::class)->name('posts.create');
+    Route::post('/', StoreController::class)->name('posts.store');
+    Route::get('/{post}', ShowController::class)->name('posts.show')->withoutMiddleware('auth');
+    Route::get('/{post}/edit', EditController::class)->name('posts.edit');
+    Route::patch('/{post}', UpdateController::class)->name('posts.update');
+    Route::delete('/{post}', DestroyController::class)->name('posts.destroy');
   }
 );
 
